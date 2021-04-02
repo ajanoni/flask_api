@@ -10,7 +10,7 @@ def schedule_content(scheduled_datetime, content):
     scheduledJobs.setdefault(scheduled_datetime.strftime(DATETIME_FORMAT), []).append(content)
 
 
-# In order to scale, this part should be deployed as a worker instance consuming from a queue
+# In order to scale, this part should be deployed as separated worker instances consuming from a queue
 def print_values():
     filtered = {key: value for (key, value) in scheduledJobs.items()
                 if key == datetime.now().strftime(DATETIME_FORMAT)}
