@@ -33,13 +33,13 @@ Starting flask on 5000 localhost port
 ### Test the endpoint
 
 You can test the endpoint with curl or any other tool:
-````
+```
 curl -i --request POST \
   --url http://127.0.0.1:5000/scheduler/new \
   --header 'Content-Type: application/json' \
   --data '{ "content": "some content", "datetime": "2021-04-01 16:40"}'
 ```  
- 
+
 
 ## Test
 
