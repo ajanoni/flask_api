@@ -2,15 +2,15 @@ from datetime import datetime
 
 from apscheduler.schedulers.background import BackgroundScheduler
 
-scheduledJobs = {}
+scheduledJobs = {}  # We could use a queue Redis or Kafka in replacement here
 DATETIME_FORMAT = "%Y-%m-%d %H:%M"
 
 
 def schedule_content(scheduled_datetime, content):
     scheduledJobs.setdefault(scheduled_datetime.strftime(DATETIME_FORMAT), []).append(content)
-    print_values()
 
 
+# In order to scale, this part should be deployed as a worker instance consuming from a queue
 def print_values():
     filtered = {key: value for (key, value) in scheduledJobs.items()
                 if key == datetime.now().strftime(DATETIME_FORMAT)}
@@ -21,5 +21,5 @@ def print_values():
 
 
 scheduler_background = BackgroundScheduler()
-job = scheduler_background.add_job(print_values, 'interval', seconds=3)
+job = scheduler_background.add_job(print_values, 'interval', seconds=1)
 scheduler_background.start()

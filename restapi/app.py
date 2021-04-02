@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, Response
 from flask_restful import Resource, Api, reqparse
 from _datetime import datetime
 from restapi import scheduler
@@ -16,7 +16,7 @@ class ContentScheduler(Resource):
         args = parser.parse_args()
 
         scheduler.schedule_content(args['datetime'], args['content'])
-        return None, 202
+        return Response(status=202)
 
 
 api.add_resource(ContentScheduler, '/scheduler/new')

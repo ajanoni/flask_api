@@ -1,7 +1,7 @@
-from datetime import datetime
 import pytest
+import time
+from datetime import datetime
 from mock import patch, Mock
-
 from restapi import scheduler
 from restapi.app import app
 
@@ -25,6 +25,7 @@ def test_same_datetime(client, capsys):
 
     assert responseOne.status_code == 202
     assert responseTwo.status_code == 202
+    time.sleep(1)
     captured = capsys.readouterr()
     output = captured.out
     assert output == "some content\nsome content\n"
@@ -64,6 +65,7 @@ def test_different_datetime(client, capsys):
 
     assert responseOne.status_code == 202
     assert responseTwo.status_code == 202
+    time.sleep(1)
     captured = capsys.readouterr()
     output = captured.out
     assert output == "some content one\n"
