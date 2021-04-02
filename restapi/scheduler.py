@@ -2,7 +2,7 @@ from datetime import datetime
 
 from apscheduler.schedulers.background import BackgroundScheduler
 
-scheduledJobs = {}  # We could use a queue Redis or Kafka in replacement here
+scheduledJobs = {}  # We could use a queue Redis or Kafka in replacement here and persistence
 DATETIME_FORMAT = "%Y-%m-%d %H:%M"
 
 
