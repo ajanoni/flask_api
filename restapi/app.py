@@ -19,7 +19,7 @@ class ContentScheduler(Resource):
         return Response(status=202)
 
 
-api.add_resource(ContentScheduler, '/scheduler/new')
+api.add_resource(ContentScheduler, '/scheduler')
 
 if __name__ == '__main__':
     app.run()

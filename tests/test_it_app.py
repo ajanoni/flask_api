@@ -20,8 +20,8 @@ def test_same_datetime(client, capsys):
         "datetime": "2021-04-01 13:42"
     }
 
-    responseOne = client.post("/scheduler/new", data=payload)
-    responseTwo = client.post("/scheduler/new", data=payload)
+    responseOne = client.post("/scheduler", data=payload)
+    responseTwo = client.post("/scheduler", data=payload)
 
     assert responseOne.status_code == 202
     assert responseTwo.status_code == 202
@@ -38,8 +38,8 @@ def test_past_datetime(client, capsys):
         "datetime": "2021-04-01 13:42"
     }
 
-    responseOne = client.post("/scheduler/new", data=payload)
-    responseTwo = client.post("/scheduler/new", data=payload)
+    responseOne = client.post("/scheduler", data=payload)
+    responseTwo = client.post("/scheduler", data=payload)
 
     assert responseOne.status_code == 202
     assert responseTwo.status_code == 202
@@ -60,8 +60,8 @@ def test_different_datetime(client, capsys):
         "datetime": "2021-04-01 16:01"
     }
 
-    responseOne = client.post("/scheduler/new", data=payloadOne)
-    responseTwo = client.post("/scheduler/new", data=payloadTwo)
+    responseOne = client.post("/scheduler", data=payloadOne)
+    responseTwo = client.post("/scheduler", data=payloadTwo)
 
     assert responseOne.status_code == 202
     assert responseTwo.status_code == 202
@@ -77,7 +77,7 @@ def test_invalid_datetime(client, capsys):
         "datetime": "x"
     }
 
-    responseOne = client.post("/scheduler/new", data=payloadErr)
+    responseOne = client.post("/scheduler", data=payloadErr)
 
     assert responseOne.status_code == 400
     responseJson = responseOne.get_data(as_text=True)
