@@ -1,7 +1,8 @@
-from flask import Flask, Response
+from flask import Flask, jsonify
 from flask_restful import Resource, Api, reqparse
 from _datetime import datetime
 from restapi import scheduler
+
 
 app = Flask(__name__)
 api = Api(app)
@@ -15,8 +16,8 @@ class ContentScheduler(Resource):
                             required=True)
         args = parser.parse_args()
 
-        scheduler.schedule_content(args['datetime'], args['content'])
-        return Response(status=202)
+        new_id = scheduler.schedule_content(args['datetime'], args['content'])
+        return {'id': new_id}, 202
 
 
 api.add_resource(ContentScheduler, '/scheduler')

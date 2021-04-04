@@ -43,6 +43,7 @@ def test_past_datetime(client, capsys):
 
     assert responseOne.status_code == 202
     assert responseTwo.status_code == 202
+    time.sleep(1)
     captured = capsys.readouterr()
     output = captured.out
     assert output == ""
