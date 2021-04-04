@@ -72,7 +72,7 @@ def test_different_datetime(client, capsys):
     assert output == "some content one\n"
 
 
-def test_invalid_datetime(client, capsys):
+def test_invalid_datetime(client):
     payloadErr = {
         "content": "some content one",
         "datetime": "x"
